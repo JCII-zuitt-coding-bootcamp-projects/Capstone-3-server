@@ -1,11 +1,14 @@
 This is the server side of capstone 3.
 
 -inlcudes all backend endpoint
-__
+<br />
 -includes the planning of the database structures
-__
+<br />
+<br />
 	>collections needed
-	__
+	<br />
 	>collections field name
-	__
+	<br />
+
+<br />
 -includes the planning of the mongoDb Schema
