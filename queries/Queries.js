@@ -23,8 +23,8 @@ const typeDefs = gql`
 		middleName : String!
 		lastName : String!
 		gender : String!
-		birthday : String!
-		position : String!
+		birthday : String
+		position : String
 		superAdmin : Boolean
 		deletedAt : String
 	}
@@ -82,7 +82,7 @@ const typeDefs = gql`
 	
 
 
-	#Query 
+	#Query , SELECTING DATA.............. 
   	type Query {
     	hello: String
 
@@ -106,6 +106,90 @@ const typeDefs = gql`
     	getAction(id : String !) : ActionType
 
   	}
+
+
+
+  	#CUD , Create , Update , Delete -- mutating the server/database
+
+  	type Mutation{
+	
+  		createAdmin(
+			email : String!
+			username : String!
+			password : String!
+			firstName : String!
+			middleName : String!
+			lastName : String!
+			gender : String!
+			birthday : String
+			position : String
+			superAdmin : Boolean
+			deletedAt : String
+
+		) : AdminType
+
+
+		createPerson(
+			firstName : String!
+			middleName : String!
+			lastName : String!
+			birthday : String!
+			address : String!
+			nationality : String!
+			gender : String!
+			adminId : String!
+			deletedAt : String
+
+		) : PersonType
+
+
+		createFace(
+			personId : String!
+			image : String!
+			position : String!
+			emotion : String!
+			source : String!
+			deletedAt : String
+
+		) : FaceType
+
+
+		createWatchlist(
+			personId : String!
+			adminId : String!
+			case : String!
+			label : String!
+			closeAt : String
+			deletedAt : String
+
+		) : WatchlistType
+
+
+		createDetection(
+			personId : String!
+			image : String!
+			captureAt : String!
+			deletedAt : String
+
+		) : DetectionType
+
+
+		createAction(
+			watchlistId : String!
+			action : String!
+			adminId : String!
+			deletedAt : String
+
+		) : ActionType
+
+		
+		
+		
+		
+		
+		
+
+	}
 `;
  
 // Provide resolver functions for your schema fields
@@ -114,13 +198,66 @@ const resolvers = {
     // hello: () => 'Hello world!',
 
     /*---------|	 Multiple results 	|---------*/
-	    ______ : ()=>{
-			console.log("geting members...")
-			return Member.find({});
+	    getAdmins : ()=>{
+			return Admin.find({});
+		},
+		getPersons : ()=>{
+			return Person.find({});
+		},
+		getFaces : ()=>{
+			return Face.find({});
+		},
+		getWatchlists : ()=>{
+			return Watchlist.find({});
+		},
+		getDetections : ()=>{
+			return Detection.find({});
+		},
+		getActions : ()=>{
+			return Action.find({});
 		},
 
-	/*---------|	 Single result 	|---------*/
-  },
+	/*---------|	 Single result via ID? 	|---------*/
+
+		getAdmin : ( _ , args)=>{
+			console.log(args);
+			return Admin.findById({ _id : args.id });
+		},
+		getPerson : ( _ , args)=>{
+			console.log(args);
+			return Person.findById({ _id : args.id });
+		},
+		getFace : ( _ , args)=>{
+			console.log(args);
+			return Face.findById({ _id : args.id });
+		},
+		getWatchlist : ( _ , args)=>{
+			console.log(args);
+			return Watchlist.findById({ _id : args.id });
+		},
+		getDetection : ( _ , args)=>{
+			console.log(args);
+			return Detection.findById({ _id : args.id });
+		},
+		getAction : ( _ , args)=>{
+			console.log(args);
+			return Action.findById({ _id : args.id });
+		},
+
+
+
+
+  }, //Query resolver end
+
+
+
+
+  // ============ MUTATIONS Resolver  ============ //
+  Mutation : {
+
+
+  },//Mutation resolver end
+
 };
 
 
