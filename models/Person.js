@@ -31,9 +31,13 @@ const PersonSchema = new Schema({
 		type: String,
 		required : true
 	},
-	admin_id : {
+	adminId : {
 		type: String,
 		required : true
+	},
+	deletedAt : {
+		type: Date,
+		required : false
 	},
 
 

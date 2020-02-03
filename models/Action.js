@@ -15,6 +15,10 @@ const ActionSchema = new Schema({
 		type: String,
 		required : true
 	},
+	deletedAt : {
+		type: Date,
+		required : false
+	},
 
 },{
 	timestamps : true

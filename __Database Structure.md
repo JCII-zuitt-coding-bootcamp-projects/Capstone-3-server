@@ -34,6 +34,11 @@
 >>> admin (trackers)
 
 -id
+
+-username
+-password
+-email
+
 -firstName
 -middleName
 -lastName
@@ -56,7 +61,7 @@
 -gender
 -createdAt
 -updatedAt
--admin_id (fk) // the one who added the person record in db
+-adminId (fk) // the one who added the person record in db
 
 
 >>> faces (faces records of person , 1 person many faces angle)
@@ -84,8 +89,8 @@
 -personId (fk)
 -case [ex. Lost child, Criminal- murder etc.... ]
 -label  [ danger, warning , etc]
--close [if case is close] , boolean
 -closeAt
+-adminId (fk) // the one who added the record
 -createdAt
 -updatedAt
 

@@ -3,6 +3,23 @@ const Schema = mongoose.Schema;
 
 const AdminShema = new Schema({
 
+	email : {
+		type: String,
+		required : true
+	},
+
+	username : {
+		type: String,
+		required : true
+	},
+
+	password : {
+		type: String,
+		required : true
+	},
+
+
+
 	firstName : {
 		type: String,
 		required : true
@@ -29,7 +46,12 @@ const AdminShema = new Schema({
 	},
 	superAdmin : {
 		type: Boolean,
-		required : true
+		required : true,
+		default : false,
+	},
+	deletedAt : {
+		type: Date,
+		required : false
 	},
 
 

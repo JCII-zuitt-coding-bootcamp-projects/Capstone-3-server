@@ -15,6 +15,10 @@ const DetectionSchema = new Schema({
 		type: Date,
 		required : true
 	},
+	deletedAt : {
+		type: Date,
+		required : false
+	},
 
 },{
 	timestamps : true
