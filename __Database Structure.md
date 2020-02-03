@@ -3,7 +3,7 @@
 <!-- ------ TABLES ------ -->
 
 
-1.	trackers  (admins) - accounts of authorized person to track a certain person , admin side
+1.	admin  (trackers) - accounts of authorized person to track a certain person , admin side
 
 2.	persons - record of person 
 
@@ -31,64 +31,69 @@
 <!----- Table Fields ----->
 
 
->>> trackers (admins)
+>>> admin (trackers)
 
 -id
--firstname
--middlename
--lastname
+-firstName
+-middleName
+-lastName
 -position
 -birthday
--super_admin (bol)
+-superAdmin (bol)
 -gender
--created_at
--updated_at
+-createdAt
+-updatedAt
 
 
 >>> persons
 -id
--firstname
--middlename
--lastname
+-firstName
+-middleName
+-lastName
 -birthday
 -address
--nationality
+-nationality ??
 -gender
--created_at
--updated_at
+-createdAt
+-updatedAt
+-admin_id (fk) // the one who added the person record in db
 
 
 >>> faces (faces records of person , 1 person many faces angle)
 -id
--person_id (fk)
+-personId (fk)
 -image - the image file name... ( complete path? )
 -position - face position/angle (left , right)
 -emotion
--created_at
--updated_at
+-source (ex. webcam , upload )
+-createdAt
+-updatedAt
 
 
  >>> detections (face detections)
 -id
--person_id (fk)
+-personId (fk)
 -image - the img screenshot when the face was detected.
--created_at
--updated_at
+-captureAt
+-createdAt
+-updatedAt
 
 
 >>> watchlists (person to monitor)
 -id
--person_id (fk)
+-personId (fk)
 -case [ex. Lost child, Criminal- murder etc.... ]
 -label  [ danger, warning , etc]
 -close [if case is close] , boolean
--close_at
--created_at
--updated_at
+-closeAt
+-createdAt
+-updatedAt
 
 
 >>> actions
 -id
--watchlist_id (fk)
+-watchlistId (fk)
 -action ( ex. Criminal cought by police )
--tracker_id (fk)
+-adminId (fk)
+-createdAt
+-updatedAt
