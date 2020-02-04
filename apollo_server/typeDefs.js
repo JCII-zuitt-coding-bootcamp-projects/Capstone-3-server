@@ -1,9 +1,15 @@
 const { gql } = require('apollo-server-express');
+const { GraphQLDateTime } = require("graphql-iso-date")
 
 
+const customScalarResolver = {
+	Date : GraphQLDateTime
+}
 
 const typeDefs = gql`
-	
+	scalar Date	
+
+
 	type AdminType{
 		id : ID
 		email : String!
@@ -13,13 +19,13 @@ const typeDefs = gql`
 		middleName : String!
 		lastName : String!
 		gender : String!
-		birthday : String
+		birthday : Date
 		position : String
 		superAdmin : Boolean
 		deletedAt : String
 
-		createdAt : String
-		updatedAt : String
+		createdAt : Date
+		updatedAt : Date
 	}
 
 	type PersonType{
@@ -32,10 +38,10 @@ const typeDefs = gql`
 		nationality : String
 		gender : String!
 		adminId : String
-		deletedAt : String
+		deletedAt : Date
 
-		createdAt : String
-		updatedAt : String
+		createdAt : Date
+		updatedAt : Date
 
 	}
 
@@ -46,10 +52,10 @@ const typeDefs = gql`
 		position : String
 		emotion : String
 		source : String
-		deletedAt : String
+		deletedAt : Date
 
-		createdAt : String
-		updatedAt : String
+		createdAt : Date
+		updatedAt : Date
 
 	}
 
@@ -59,22 +65,22 @@ const typeDefs = gql`
 		adminId : String
 		case : String!
 		label : String!
-		closeAt : String
-		deletedAt : String
+		closeAt : Date
+		deletedAt : Date
 
-		createdAt : String
-		updatedAt : String
+		createdAt : Date
+		updatedAt : Date
 	}
 
 	type DetectionType{
 		id : ID
 		personId : String!
 		image : String!
-		captureAt : String!
-		deletedAt : String
+		captureAt : Date!
+		deletedAt : Date
 
-		createdAt : String
-		updatedAt : String
+		createdAt : Date
+		updatedAt : Date
 	}
 
 	type ActionType{
@@ -82,10 +88,10 @@ const typeDefs = gql`
 		watchlistId : String!
 		action : String!
 		adminId : String!
-		deletedAt : String
+		deletedAt : Date
 
-		createdAt : String
-		updatedAt : String
+		createdAt : Date
+		updatedAt : Date
 	}
 	
 
@@ -199,5 +205,7 @@ const typeDefs = gql`
 
 	}
 `;
+
+
 
 module.exports = typeDefs;
