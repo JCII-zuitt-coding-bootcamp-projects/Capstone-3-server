@@ -26,32 +26,33 @@ const AdminShema = new Schema({
 	},
 	middleName : {
 		type: String,
-		required : true
+		required : false
 	},
 	lastName : {
 		type: String,
-		required : true
+		required : false
 	},
 	gender : {
 		type: String,
-		required : true
+		required : false
 	},
 	birthday : {
 		type: Date,
-		required : true
+		required : false
 	},
 	position : {
 		type: String,
-		required : true
+		required : false
 	},
 	superAdmin : {
 		type: Boolean,
-		required : true,
+		required : false,
 		default : false,
 	},
 	deletedAt : {
 		type: Date,
-		required : false
+		required : false,
+		default : null
 	},
 
 

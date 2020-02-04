@@ -1,0 +1,70 @@
+ ==== CREATE ====
+
+mutation {
+  createAdmin( 
+    email : "11111@gmail.com"
+    username : "udomoo31"
+    password : "mrbean31"
+    firstName : "Udo"
+    middleName : "YAyz"
+    lastName : "Moo"
+    gender : "Male"
+    # birthday : "11/1/2001"
+    # position : "Manager"
+    # superAdmin : ""
+    # deletedAt : ""
+  
+  ){
+    id
+    email
+    username
+    password
+    firstName
+    middleName
+    lastName
+    gender
+    birthday
+    position
+    superAdmin
+    deletedAt
+    createdAt
+    updatedAt
+  }
+}
+
+
+==== SELECT ALL ====
+
+
+{
+    getAdmins{
+      id
+      email
+      username
+      password
+      firstName
+      middleName
+      lastName
+      gender
+      birthday
+      position
+      superAdmin
+      deletedAt
+      createdAt
+      updatedAt
+  }
+}
+
+=== SELECT 1 record ===
+
+
+
+
+
+=== Update record ===
+
+
+=== DELETE record ===
+
+
+

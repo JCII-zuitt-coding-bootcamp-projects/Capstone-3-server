@@ -17,7 +17,8 @@ const ActionSchema = new Schema({
 	},
 	deletedAt : {
 		type: Date,
-		required : false
+		required : false,
+		default : null
 	},
 
 },{

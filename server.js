@@ -5,11 +5,12 @@ const mongoose = require('mongoose')
 
 
 /* --------------------------------|	ApolloServer gql 	|-------------------------------- */
-	//inport the instantiation of the apollo server
-	const server = require("./queries/Queries.js")
+	//imnport the instantiation of the apollo server gql
+	const apolloServer = require("./apollo_server/apolloServer.js")
+
 
 	//make the express app be serve by ApolloServer
-	server.applyMiddleware({
+	apolloServer.applyMiddleware({
 		 app,
 		 path :  "/capstone3-gql" // playground, endpoint 
 	});
@@ -43,5 +44,5 @@ const mongoose = require('mongoose')
 
 const port = 4000;
 app.listen(port, () =>{
-	 console.log(`🚀 Server ready at ${port}${server.graphqlPath}`); // ${server.graphqlPath}
+	 console.log(`🚀 Server ready at ${port}${apolloServer.graphqlPath}`); // ${server.graphqlPath}
 })

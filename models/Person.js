@@ -17,15 +17,15 @@ const PersonSchema = new Schema({
 	},
 	birthday : {
 		type: Date,
-		required : true
+		required : false
 	},
 	address : {
 		type: String,
-		required : true
+		required : false
 	},
 	nationality : {
 		type: String,
-		required : true
+		required : false
 	},
 	gender : {
 		type: String,
@@ -33,11 +33,12 @@ const PersonSchema = new Schema({
 	},
 	adminId : {
 		type: String,
-		required : true
+		required : false
 	},
 	deletedAt : {
 		type: Date,
-		required : false
+		required : false,
+		default : null
 	},
 
 

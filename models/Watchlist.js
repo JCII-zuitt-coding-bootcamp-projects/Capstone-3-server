@@ -9,7 +9,7 @@ const WatchlistSchema = new Schema({
 	},
 	adminId : { // the auth admin who created the records
 		type: String,
-		required : true
+		required : false
 	},
 	case : {
 		type: String,
@@ -21,11 +21,13 @@ const WatchlistSchema = new Schema({
 	},
 	closeAt : {
 		type: Date,
-		required : false
+		required : false,
+		default : null
 	},
 	deletedAt : {
 		type: Date,
-		required : false
+		required : false,
+		default : null
 	},
 
 },{

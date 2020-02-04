@@ -1,0 +1,67 @@
+ ==== CREATE ====
+
+
+mutation {
+  createPerson(
+    
+    firstName : "Mile"
+    middleName : "mid2"
+    lastName : "Daks"
+    # birthday : ""
+    # address : ""
+    # nationality : ""
+    gender : "female"
+    # adminId : ""
+    # deletedAt : ""
+  
+  ){
+    id
+    firstName
+    middleName
+    lastName
+    birthday
+    address
+    nationality
+    gender
+    adminId
+    deletedAt
+    createdAt
+    updatedAt
+  }
+}
+
+
+==== SELECT ALL ====
+
+{
+  getPersons{
+    id
+    firstName
+    middleName
+    lastName
+    birthday
+    address
+    nationality
+    gender
+    adminId
+    deletedAt
+    createdAt
+    updatedAt
+    
+  }
+}
+
+
+=== SELECT 1 record ===
+
+
+
+
+
+=== Update record ===
+
+
+=== DELETE record ===
+
+
+

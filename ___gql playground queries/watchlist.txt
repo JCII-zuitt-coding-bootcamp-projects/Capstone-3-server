@@ -1,0 +1,58 @@
+ ==== CREATE ====
+
+
+mutation {
+  createWatchlist(
+    
+    personId : "5e38e64b86594930b7f7e5e2"
+    # adminId : ""
+    case : "lost child"
+    label : "warning"
+    # closeAt : ""
+    # deletedAt : ""
+  
+  ){
+    id
+    personId
+    adminId
+    case
+    label
+    closeAt
+    deletedAt
+    createdAt
+    updatedAt
+  }
+}
+
+
+==== SELECT ALL ====
+
+{
+  getWatchlists{
+    id
+    personId
+    adminId
+    case
+    label
+    closeAt
+    deletedAt
+    createdAt
+    updatedAt
+    
+  }
+}
+
+
+=== SELECT 1 record ===
+
+
+
+
+
+=== Update record ===
+
+
+=== DELETE record ===
+
+
+

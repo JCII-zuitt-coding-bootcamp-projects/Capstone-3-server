@@ -18,3 +18,5 @@
  >Create Queries folder inside the server folder , create queries.js file
  	>create apollo server at queries.js for EVERY crud
  	>test in playground
+
+ >

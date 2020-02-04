@@ -1,17 +1,7 @@
-const { ApolloServer ,gql } = require('apollo-server-express');
-
-// const bcrypt = require('bcrypt')
-
-//	Import all mongoose model Schema for resolver
-const Action = require("../models/Action")
-const Admin = require("../models/Admin")
-const Detection = require("../models/Detection")
-const Face = require("../models/Face")
-const Person = require("../models/Person")
-const Watchlist = require("../models/Watchlist")
+const { gql } = require('apollo-server-express');
 
 
-// Construct a schema, using GraphQL schema language
+
 const typeDefs = gql`
 	
 	type AdminType{
@@ -27,6 +17,9 @@ const typeDefs = gql`
 		position : String
 		superAdmin : Boolean
 		deletedAt : String
+
+		createdAt : String
+		updatedAt : String
 	}
 
 	type PersonType{
@@ -34,12 +27,15 @@ const typeDefs = gql`
 		firstName : String!
 		middleName : String!
 		lastName : String!
-		birthday : String!
-		address : String!
-		nationality : String!
+		birthday : String
+		address : String
+		nationality : String
 		gender : String!
-		adminId : String!
+		adminId : String
 		deletedAt : String
+
+		createdAt : String
+		updatedAt : String
 
 	}
 
@@ -47,21 +43,27 @@ const typeDefs = gql`
 		id : ID
 		personId : String!
 		image : String!
-		position : String!
-		emotion : String!
-		source : String!
+		position : String
+		emotion : String
+		source : String
 		deletedAt : String
+
+		createdAt : String
+		updatedAt : String
 
 	}
 
 	type WatchlistType{
 		id : ID
 		personId : String!
-		adminId : String!
+		adminId : String
 		case : String!
 		label : String!
 		closeAt : String
 		deletedAt : String
+
+		createdAt : String
+		updatedAt : String
 	}
 
 	type DetectionType{
@@ -70,6 +72,9 @@ const typeDefs = gql`
 		image : String!
 		captureAt : String!
 		deletedAt : String
+
+		createdAt : String
+		updatedAt : String
 	}
 
 	type ActionType{
@@ -78,6 +83,9 @@ const typeDefs = gql`
 		action : String!
 		adminId : String!
 		deletedAt : String
+
+		createdAt : String
+		updatedAt : String
 	}
 	
 
@@ -118,9 +126,9 @@ const typeDefs = gql`
 			username : String!
 			password : String!
 			firstName : String!
-			middleName : String!
-			lastName : String!
-			gender : String!
+			middleName : String
+			lastName : String
+			gender : String
 			birthday : String
 			position : String
 			superAdmin : Boolean
@@ -133,11 +141,11 @@ const typeDefs = gql`
 			firstName : String!
 			middleName : String!
 			lastName : String!
-			birthday : String!
-			address : String!
-			nationality : String!
+			birthday : String
+			address : String
+			nationality : String
 			gender : String!
-			adminId : String!
+			adminId : String
 			deletedAt : String
 
 		) : PersonType
@@ -156,7 +164,7 @@ const typeDefs = gql`
 
 		createWatchlist(
 			personId : String!
-			adminId : String!
+			adminId : String
 			case : String!
 			label : String!
 			closeAt : String
@@ -191,77 +199,5 @@ const typeDefs = gql`
 
 	}
 `;
- 
-// Provide resolver functions for your schema fields
-const resolvers = {
-  Query: {
-    // hello: () => 'Hello world!',
 
-    /*---------|	 Multiple results 	|---------*/
-	    getAdmins : ()=>{
-			return Admin.find({});
-		},
-		getPersons : ()=>{
-			return Person.find({});
-		},
-		getFaces : ()=>{
-			return Face.find({});
-		},
-		getWatchlists : ()=>{
-			return Watchlist.find({});
-		},
-		getDetections : ()=>{
-			return Detection.find({});
-		},
-		getActions : ()=>{
-			return Action.find({});
-		},
-
-	/*---------|	 Single result via ID? 	|---------*/
-
-		getAdmin : ( _ , args)=>{
-			console.log(args);
-			return Admin.findById({ _id : args.id });
-		},
-		getPerson : ( _ , args)=>{
-			console.log(args);
-			return Person.findById({ _id : args.id });
-		},
-		getFace : ( _ , args)=>{
-			console.log(args);
-			return Face.findById({ _id : args.id });
-		},
-		getWatchlist : ( _ , args)=>{
-			console.log(args);
-			return Watchlist.findById({ _id : args.id });
-		},
-		getDetection : ( _ , args)=>{
-			console.log(args);
-			return Detection.findById({ _id : args.id });
-		},
-		getAction : ( _ , args)=>{
-			console.log(args);
-			return Action.findById({ _id : args.id });
-		},
-
-
-
-
-  }, //Query resolver end
-
-
-
-
-  // ============ MUTATIONS Resolver  ============ //
-  Mutation : {
-
-
-  },//Mutation resolver end
-
-};
-
-
-
-const server = new ApolloServer({ typeDefs , resolvers});
-
-module.exports = server;
+module.exports = typeDefs;
