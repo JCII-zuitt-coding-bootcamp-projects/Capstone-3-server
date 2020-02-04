@@ -1,5 +1,42 @@
  ==== CREATE ====
+
+
+mutation {
+  createDetection(
+    
+    personId :"5e38e64b86594930b7f7e5e2"
+    image :"capture1.jpg"
+    captureAt :"1580787928818"
+    # deletedAt :""
+  
+  ){
+    id
+    personId
+    image
+    captureAt
+    deletedAt
+    createdAt
+    updatedAt
+  }
+}
+
+
 ==== SELECT ALL ====
+
+{
+  getDetections{
+    id
+    personId
+    image
+    captureAt
+    deletedAt
+    createdAt
+    updatedAt
+    
+  }
+}
+
+
 === SELECT 1 record ===
 
 

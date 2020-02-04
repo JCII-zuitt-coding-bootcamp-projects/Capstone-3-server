@@ -88,37 +88,37 @@ const mutationResolvers = {
 		return newWatchlist.save()
 	},
 
-	// createDetection : ( _ , args) =>{
+	createDetection : ( _ , args) =>{
 
-	// 	let newDetection = Detection({
+		let newDetection = Detection({
 			
-	// 		personId : args.personId ,
-	// 		image : args.image ,
-	// 		captureAt : args.captureAt ,
-	// 		deletedAt : args.deletedAt ,
+			personId : args.personId ,
+			image : args.image ,
+			captureAt : args.captureAt ,
+			deletedAt : args.deletedAt ,
 			
-	// 	});
+		});
 
-	// 	console.log( newDetection )
+		console.log( newDetection )
 
-	// 	return newDetection.save()
-	// },
+		return newDetection.save()
+	},
 
-	// createAction : ( _ , args) =>{
+	createAction : ( _ , args) =>{
 
-	// 	let newAction = Action({
+		let newAction = Action({
 
-	// 		watchlistId : args.watchlistId ,
-	// 		action : args.action ,
-	// 		adminId : args.adminId ,
-	// 		deletedAt : args.deletedAt ,
+			watchlistId : args.watchlistId ,
+			action : args.action ,
+			adminId : args.adminId ,
+			deletedAt : args.deletedAt ,
 			
-	// 	});
+		});
 
-	// 	console.log( newAction )
+		console.log( newAction )
 
-	// 	return newAction.save()
-	// },
+		return newAction.save()
+	},
 
 
 

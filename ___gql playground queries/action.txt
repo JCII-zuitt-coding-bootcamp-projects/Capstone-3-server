@@ -1,5 +1,41 @@
  ==== CREATE ====
+
+
+mutation {
+  createAction(
+    watchlistId :"5e38e8d86d22b2324444bf2d"
+    action :"Children is now under custody"
+    adminId :"11111111"
+    # deletedAt :""
+  
+  ){
+    id
+    watchlistId
+    action
+    adminId
+    deletedAt
+    createdAt
+    updatedAt
+  }
+}
+
+
 ==== SELECT ALL ====
+
+{
+  getActions{
+    id
+    watchlistId
+    action
+    adminId
+    deletedAt
+    createdAt
+    updatedAt
+    
+  }
+}
+
+
 === SELECT 1 record ===
 
 
