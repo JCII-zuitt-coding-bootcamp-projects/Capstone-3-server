@@ -44,6 +44,8 @@ const typeDefs = gql`
 		createdAt : Date
 		updatedAt : Date
 
+		faces : [FaceType]
+
 	}
 
 	type FaceType{

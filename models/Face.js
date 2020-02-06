@@ -13,15 +13,15 @@ const FaceSchema = new Schema({
 	},
 	position : {
 		type: String,
-		required : true
+		required : false
 	},
 	emotion : {
 		type: String,
-		required : true
+		required : false
 	},
 	source : {
 		type: String,
-		required : true
+		required : false
 	},
 	deletedAt : {
 		type: Date,

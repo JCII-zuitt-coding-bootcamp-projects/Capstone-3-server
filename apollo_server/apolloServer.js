@@ -2,6 +2,9 @@ const { ApolloServer } = require('apollo-server-express');
 
 // const bcrypt = require('bcrypt')
 
+const Face = require("../models/Face")
+
+
 
 const typeDefs = require("./typeDefs")
 const queryResolvers = require("./resolvers/queryResolvers")
@@ -14,6 +17,16 @@ const resolvers = {
   Query: queryResolvers,
   // ---------- MUTATIONS Resolvers  ---------- //
   Mutation : mutationResolvers,
+
+
+  //Relationships resolver
+  PersonType : {
+		faces : (parent, args) => {
+			// console.log(parent.firstname)
+
+			return Face.find({ personId : parent.id })
+		}
+	},
 
 }
 

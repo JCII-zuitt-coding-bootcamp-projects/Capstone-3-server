@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+var cors = require('cors')
 
-
+app.use(cors())
+app.use("/faces" , express.static('faces') ) // allow images
 
 /* --------------------------------|	ApolloServer gql 	|-------------------------------- */
 	//imnport the instantiation of the apollo server gql
@@ -24,6 +26,8 @@ const mongoose = require('mongoose')
 
 	let databaseURL = "mongodb+srv://admin1:123@b47cluster-27o5e.mongodb.net/capstone3?retryWrites=true&w=majority"
 
+	
+
 	mongoose.connect(databaseURL , {
 		 useNewUrlParser : true,
 		 useUnifiedTopology: true 
@@ -33,6 +37,10 @@ const mongoose = require('mongoose')
 	})
 
 /* --------------------------------|	MONGO DB connection		|-------------------------------- */
+
+
+
+
 
 
 
