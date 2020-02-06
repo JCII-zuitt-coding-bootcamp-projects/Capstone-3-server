@@ -55,6 +55,12 @@ const AdminShema = new Schema({
 		default : null
 	},
 
+	roles : {
+		type: String,
+		required : false
+	},
+	
+
 
 },{
 	timestamps : true

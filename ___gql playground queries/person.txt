@@ -34,7 +34,7 @@ mutation {
 ==== SELECT ALL ====
 
 {
-  getPersons{
+  getAllPeople{
     id
     firstName
     middleName

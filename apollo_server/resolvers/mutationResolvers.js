@@ -121,6 +121,41 @@ const mutationResolvers = {
 	},
 
 
+	loginAdmin : (_ , args) =>{
+		// console.log(args);
+		console.log("tryying to Login")
+
+		return Admin.findOne({username : args.username })
+								.then( admin =>{
+									console.log(admin)
+
+									if(admin == null){
+										console.log("admin not found")
+										return null
+									}
+									// else{
+									// 	return admin;
+									// }
+
+									// Compare the hashed password and the plain password from login page
+									// let passwordMatched = bcrypt.compareSync(args.password , admin.password)
+									let passwordMatched = admin.password === args.password; // For testing!
+
+									if(!passwordMatched){
+										console.log("wrong password")
+										return null;
+									}else{
+										console.log("Correct password")
+
+										return admin;
+									}
+
+
+								})
+		
+	} 
+
+
 
 
   };//Mutation resolver end

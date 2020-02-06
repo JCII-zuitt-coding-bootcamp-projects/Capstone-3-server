@@ -16,7 +16,7 @@ const queryResolvers = {
 	    	console.log("zzzz")
 			return Admin.find({});
 		},
-		getPersons : ()=>{
+		getAllPeople : ()=>{
 			return Person.find({});
 		},
 		getFaces : ()=>{

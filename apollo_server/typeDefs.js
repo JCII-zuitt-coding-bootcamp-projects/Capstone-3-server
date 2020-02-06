@@ -23,6 +23,7 @@ const typeDefs = gql`
 		position : String
 		superAdmin : Boolean
 		deletedAt : String
+		roles : String
 
 		createdAt : Date
 		updatedAt : Date
@@ -103,7 +104,7 @@ const typeDefs = gql`
     	# ---------|	 Multiple results 	|---------
 
     	getAdmins : [AdminType]
-    	getPersons : [PersonType]
+    	getAllPeople : [PersonType]
     	getFaces : [FaceType]
     	getWatchlists : [WatchlistType]
     	getDetections : [DetectionType]
@@ -139,6 +140,8 @@ const typeDefs = gql`
 			position : String
 			superAdmin : Boolean
 			deletedAt : String
+			roles : String
+			
 
 		) : AdminType
 
@@ -197,7 +200,7 @@ const typeDefs = gql`
 		) : ActionType
 
 		
-		
+		loginAdmin(username : String , password : String) :AdminType
 		
 		
 		
