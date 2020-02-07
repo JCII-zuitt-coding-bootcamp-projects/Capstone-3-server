@@ -56,7 +56,7 @@ app.use("/faces" , express.static('faces') ) // allow images
 // })
 
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 app.listen(port, () =>{
 	 console.log(`🚀 Server ready at ${port}${apolloServer.graphqlPath}`); // ${server.graphqlPath}
 })
