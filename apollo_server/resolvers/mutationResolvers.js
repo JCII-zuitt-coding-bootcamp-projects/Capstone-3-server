@@ -7,6 +7,9 @@ const Face = require("../../models/Face")
 const Person = require("../../models/Person")
 const Watchlist = require("../../models/Watchlist")
 
+const uuid = require('uuid/v1');
+const fs = require('fs');
+
 
 const mutationResolvers = {
 
@@ -21,6 +24,7 @@ const mutationResolvers = {
 			gender : args.gender ,
 			birthday : args.birthday ,
 			position : args.position ,
+			roles : args.roles ,
 			superAdmin : args.superAdmin ,
 			deletedAt : args.deletedAt ,
 			
@@ -33,19 +37,42 @@ const mutationResolvers = {
 
 	createPerson : ( _ , args) =>{
 		
-		let newPerson = Person({
-			
-			firstName : args.firstName ,
-			middleName : args.middleName ,
-			lastName : args.lastName ,
-			birthday : args.birthday ,
-			address : args.address ,
-			nationality : args.nationality ,
-			gender : args.gender ,
-			adminId : args.adminId ,
-			deletedAt : args.deletedAt ,
-		});
+		console.log('arssssss', args)
 
+		//Image uploading!
+		let imageString = args.image;
+		let imageBase = imageString.split(';base64,').pop()
+		console.log("encoded file " + imageBase)
+		let imageLocation = "faces/" + uuid() + ".jpg";
+		fs.writeFile(imageLocation , imageBase , {encoding : "base64" } , err=>{
+			console.log(err)
+		})
+
+				let newPerson = Person({
+					
+					firstName : args.firstName ,
+					middleName : args.middleName ,
+					lastName : args.lastName ,
+					birthday : args.birthday ,
+					address : args.address ,
+					nationality : args.nationality ,
+					gender : args.gender ,
+					adminId : args.adminId ,
+					deletedAt : args.deletedAt ,
+					image : imageLocation //'/images/hello.png'
+				});
+
+				//make the profile pic uploaded be the first face in faces
+				let newFace = Face({
+
+					personId : newPerson._id ,
+					image : newPerson.image ,
+
+				});
+
+				newFace.save()
+
+		console.log( newFace )
 		console.log( newPerson )
 
 		return newPerson.save()
@@ -153,6 +180,22 @@ const mutationResolvers = {
 
 								})
 		
+	} ,
+
+
+	toggleWatchlist : (_ , args) =>{
+			// console.log(args);
+			// console.log("tryying to Login")
+
+			console.log('toggling...')
+			console.log(args);
+
+			let  condition = { _id : args.id }
+			let updates = {
+					isWatched : args.isWatched
+			};
+
+			return Person.findOneAndUpdate(condition, updates)
 	} 
 
 

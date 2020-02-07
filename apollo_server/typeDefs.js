@@ -41,8 +41,12 @@ const typeDefs = gql`
 		adminId : String
 		deletedAt : Date
 
+		image : String!
+		isWatched : Boolean
+
 		createdAt : Date
 		updatedAt : Date
+
 
 		faces : [FaceType]
 
@@ -159,6 +163,8 @@ const typeDefs = gql`
 			adminId : String
 			deletedAt : String
 
+			image : String
+
 		) : PersonType
 
 
@@ -203,6 +209,8 @@ const typeDefs = gql`
 
 		
 		loginAdmin(username : String , password : String) :AdminType
+
+		toggleWatchlist(id : String , isWatched : Boolean) :PersonType
 		
 		
 		

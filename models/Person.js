@@ -15,6 +15,12 @@ const PersonSchema = new Schema({
 		type: String,
 		required : true
 	},
+
+	image : {
+		type: String,
+		required : false
+	},
+
 	birthday : {
 		type: Date,
 		required : false
@@ -39,6 +45,12 @@ const PersonSchema = new Schema({
 		type: Date,
 		required : false,
 		default : null
+	},
+
+	isWatched : {
+		type: Boolean,
+		required : false,
+		default : false,
 	},
 
 
