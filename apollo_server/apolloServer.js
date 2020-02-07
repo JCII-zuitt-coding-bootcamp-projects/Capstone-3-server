@@ -1,5 +1,7 @@
 const { ApolloServer } = require('apollo-server-express');
 
+var cors = require('cors')
+
 // const bcrypt = require('bcrypt')
 
 const Face = require("../models/Face")
@@ -32,7 +34,7 @@ const resolvers = {
 
 
 
-
+app.use(cors())
 const apolloServer = new ApolloServer({ typeDefs , resolvers});
 
 module.exports = apolloServer;
