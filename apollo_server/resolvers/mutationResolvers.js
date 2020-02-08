@@ -196,7 +196,27 @@ const mutationResolvers = {
 			};
 
 			return Person.findOneAndUpdate(condition, updates)
-	} 
+	},
+
+
+	updatePerson :(_ , args) =>{
+	
+		console.log("updating person....")
+
+					let  condition = { _id : args.id }
+					let updates = {
+							firstName : args.firstName,
+							middleName : args.middleName,
+							lastName : args.lastName,
+							address : args.address,
+							gender : args.gender,
+							nationality : args.nationality,
+							// image : args.image,
+					};
+
+					return Person.findOneAndUpdate(condition, updates)
+
+	}
 
 
 

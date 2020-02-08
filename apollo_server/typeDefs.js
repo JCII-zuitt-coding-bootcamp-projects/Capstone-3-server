@@ -133,7 +133,20 @@ const typeDefs = gql`
   	#CUD , Create , Update , Delete -- mutating the server/database
 
   	type Mutation{
-	
+		
+
+		updatePerson(
+			id : ID!
+			firstName : String
+			middleName : String
+			lastName : String
+			address : String
+			gender : String
+			nationality : String
+			image : String
+
+		) : PersonType
+
   		createAdmin(
 			email : String!
 			username : String!
@@ -207,12 +220,20 @@ const typeDefs = gql`
 
 		) : ActionType
 
+
+		
+
 		
 		loginAdmin(username : String , password : String) :AdminType
 
 		toggleWatchlist(id : String , isWatched : Boolean) :PersonType
 		
 		
+		### Update.......
+
+
+
+
 		
 		
 
