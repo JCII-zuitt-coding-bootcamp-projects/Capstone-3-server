@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-var cors = require('cors')
+const cors = require('cors')
+const keys = require('./config/keys')
+
 
 const bodyParser = require('body-parser')
 
@@ -26,7 +28,7 @@ app.use("/faces" , express.static('faces') ) // allow images
 
 /* --------------------------------|	MONGO DB connection		|-------------------------------- */
 
-	let databaseURL = process.env.DATABASE_URL || "mongodb+srv://admin1:123@b47cluster-27o5e.mongodb.net/capstone3?retryWrites=true&w=majority"
+	let databaseURL = process.env.DATABASE_URL || keys.mongoURI
 
 /* --------------------------------|	Increase the file upload to 15mb		|-------------------------------- */
 	// app.use(bodyParser.json({limit: "50mb"}))
@@ -56,7 +58,7 @@ app.use("/faces" , express.static('faces') ) // allow images
 // })
 
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || keys.port ;
 app.listen(port, () =>{
 	 console.log(`🚀 Server ready at ${port}${apolloServer.graphqlPath}`); // ${server.graphqlPath}
 })
