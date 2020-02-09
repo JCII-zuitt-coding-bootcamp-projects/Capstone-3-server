@@ -1,4 +1,5 @@
 // import mongoose models...
+const bcrypt = require('bcryptjs')
 
 const Action = require("../../models/Action")
 const Admin = require("../../models/Admin")
@@ -17,7 +18,10 @@ const mutationResolvers = {
 		let newAdmin = Admin({
 			email : args.email ,
 			username : args.username ,
-			password : args.password ,
+			// password : args.password ,
+			password : bcrypt.hashSync(args.password,  10 ) ,
+
+
 			firstName : args.firstName ,
 			middleName : args.middleName ,
 			lastName : args.lastName ,
@@ -165,8 +169,8 @@ const mutationResolvers = {
 									// }
 
 									// Compare the hashed password and the plain password from login page
-									// let passwordMatched = bcrypt.compareSync(args.password , admin.password)
-									let passwordMatched = admin.password === args.password; // For testing!
+									let passwordMatched = bcrypt.compareSync(args.password , admin.password)
+									// let passwordMatched = admin.password === args.password; // For testing! // no incryption on db when creating...
 
 									if(!passwordMatched){
 										console.log("wrong password")
@@ -203,20 +207,62 @@ const mutationResolvers = {
 	
 		console.log("updating person....")
 
-					let  condition = { _id : args.id }
-					let updates = {
-							firstName : args.firstName,
-							middleName : args.middleName,
-							lastName : args.lastName,
-							address : args.address,
-							gender : args.gender,
-							nationality : args.nationality,
-							// image : args.image,
-					};
+		let  condition = { _id : args.id }
+		let updates = {
+				firstName : args.firstName,
+				middleName : args.middleName,
+				lastName : args.lastName,
+				address : args.address,
+				gender : args.gender,
+				nationality : args.nationality,
+				// image : args.image,
+		};
 
-					return Person.findOneAndUpdate(condition, updates)
+		return Person.findOneAndUpdate(condition, updates)
 
-	}
+	},
+
+	updateAdmin :(_ , args) =>{
+		console.log("updateAdmin ....")
+		// console.log(args)
+
+		let  condition = { _id : args.id }
+		let updates = {
+				
+				email : args.email ,
+				username : args.username ,
+
+				firstName : args.firstName ,
+				middleName : args.middleName ,
+				lastName : args.lastName ,
+
+				gender : args.gender ,
+				roles : args.roles ,
+				// image : args.image,
+		};
+
+
+		if(args.password != ''){
+			updates.password = bcrypt.hashSync(args.password,  10 )
+		}
+
+		return Admin.findOneAndUpdate(condition, updates)
+		
+
+	},
+
+
+	// updateAdminPassword :(_ , args) =>{
+	// 	console.log("updateAdminPassword ....")
+
+
+	// },
+
+	softDeleteAdmin :(_ , args) =>{
+		console.log("deleteAdmin ....")
+
+
+	},
 
 
 

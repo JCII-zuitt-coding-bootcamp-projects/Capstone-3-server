@@ -135,17 +135,7 @@ const typeDefs = gql`
   	type Mutation{
 		
 
-		updatePerson(
-			id : ID!
-			firstName : String
-			middleName : String
-			lastName : String
-			address : String
-			gender : String
-			nationality : String
-			image : String
-
-		) : PersonType
+		
 
   		createAdmin(
 			email : String!
@@ -179,6 +169,9 @@ const typeDefs = gql`
 			image : String
 
 		) : PersonType
+
+
+		
 
 
 		createFace(
@@ -229,13 +222,56 @@ const typeDefs = gql`
 		toggleWatchlist(id : String , isWatched : Boolean) :PersonType
 		
 		
-		### Update.......
+		### Update.................................................Update
 
+
+		updatePerson(
+			id : ID!
+			firstName : String
+			middleName : String
+			lastName : String
+			address : String
+			gender : String
+			nationality : String
+			image : String
+
+		) : PersonType
+
+
+		updateAdmin(
+			id : ID!
+			email : String!
+			username : String!
+			firstName : String!
+			middleName : String
+			lastName : String
+
+			password : String
+
+			gender : String
+			birthday : String
+			position : String
+			superAdmin : Boolean
+			deletedAt : String
+			roles : String
+			
+
+		) : AdminType
+
+
+		
 
 
 
 		
-		
+
+
+		### Delete.................................................Delete (Soft delete?)
+
+		softDeleteAdmin(
+			id : ID!
+
+		) : AdminType
 
 	}
 `;
@@ -243,3 +279,10 @@ const typeDefs = gql`
 
 
 module.exports = typeDefs;
+
+
+// updateAdminPassword(
+// 			id : ID!
+// 			password : String!
+
+// 		) : AdminType
