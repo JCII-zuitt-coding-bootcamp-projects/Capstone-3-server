@@ -7,6 +7,14 @@ const keys = require('./config/keys')
 
 const bodyParser = require('body-parser')
 
+
+/* --------------------------------|	Increase the file upload to 15mb		|-------------------------------- */
+	// DAPAT NASA TOP TO para di mag error gql apollo....
+	app.use(bodyParser.json({ limit : "15mb"}))
+
+/* --------------------------------|	Increase the file upload to 15mb		|-------------------------------- */
+
+
 app.use(cors())
 app.use("/faces" , express.static('faces') ) // allow images
 
@@ -30,10 +38,7 @@ app.use("/faces" , express.static('faces') ) // allow images
 
 	let databaseURL = process.env.DATABASE_URL || keys.mongoURI
 
-/* --------------------------------|	Increase the file upload to 15mb		|-------------------------------- */
-	// app.use(bodyParser.json({limit: "50mb"}))
-	app.use(bodyParser.json({limit: '50mb', extended: true}))
-/* --------------------------------|	Increase the file upload to 15mb		|-------------------------------- */
+
 	
 
 	mongoose.connect(databaseURL , {

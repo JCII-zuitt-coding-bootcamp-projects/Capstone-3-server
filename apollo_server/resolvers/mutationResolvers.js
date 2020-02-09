@@ -258,8 +258,16 @@ const mutationResolvers = {
 
 	// },
 
-	softDeleteAdmin :(_ , args) =>{
-		console.log("deleteAdmin ....")
+	deleteAdmin :(_ , args) =>{
+		console.log("delete Admin ....")
+		return Admin.findOneAndDelete({ _id : args.id })
+
+	},
+
+	deletePerson :(_ , args) =>{
+		console.log("delete Person ....")
+		// console.log(args)
+		return Person.findOneAndDelete({ _id : args.id })
 
 
 	},

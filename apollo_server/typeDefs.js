@@ -268,10 +268,19 @@ const typeDefs = gql`
 
 		### Delete.................................................Delete (Soft delete?)
 
-		softDeleteAdmin(
+
+		deletePerson(
+			id : ID!
+
+		) : PersonType
+
+		
+		deleteAdmin(
 			id : ID!
 
 		) : AdminType
+
+
 
 	}
 `;
