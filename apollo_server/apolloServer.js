@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 // const bcrypt = require('bcrypt')
 
 const Face = require("../models/Face")
+const Person = require("../models/Person")
 
 
 
@@ -21,12 +22,23 @@ const resolvers = {
 
   //Relationships resolver
   PersonType : {
-		faces : (parent, args) => {
-			// console.log(parent.firstname)
+    faces : (parent, args) => {
+      // console.log(parent.firstname)
 
-			return Face.find({ personId : parent.id })
-		}
-	},
+      return Face.find({ personId : parent.id })
+    }
+  },
+
+
+  DetectionType : {
+    person : (parent, args) => {
+      // console.log(parent.firstname)
+
+      return Person.findById( parent.personId )
+    }
+  },
+
+
 
 }
 

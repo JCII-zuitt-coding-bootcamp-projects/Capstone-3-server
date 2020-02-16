@@ -150,19 +150,67 @@ const mutationResolvers = {
 
 	createDetection : ( _ , args) =>{
 
-		let newDetection = Detection({
+		// let newDetection = Detection({
 			
-			personId : args.personId ,
-			image : args.image ,
-			captureAt : args.captureAt ,
-			deletedAt : args.deletedAt ,
+		// 	personId : args.personId ,
+		// 	image : args.image ,
+		// 	// captureAt : args.captureAt ,
+		// 	captureAt : new Date().toISOString(),
+
+
+		// 	deletedAt : args.deletedAt ,
 			
-		});
+		// });
 
-		console.log( newDetection )
+		// console.log( newDetection )
 
-		return newDetection.save()
-	},
+		// return newDetection.save()
+
+		// ============================
+
+
+		let imageString = args.image;
+		let imageBase =imageString .split(';base64,').pop()
+		console.log("encoded file " + imageBase)
+		let imageLocation = "faces/" + uuid() + ".jpg";
+
+		fs.writeFile(imageLocation , imageBase , {encoding : "base64" } , err=>{
+			console.log(err)
+		})
+
+		let returnedNewDetection = null
+		
+		cloudinary.uploader.upload(
+							imageLocation ,
+							(error, result) => {
+								console.log(result, error)
+
+								let newDetection = Detection({
+			
+									personId : args.personId ,
+									image : result.secure_url ,
+									// captureAt : args.captureAt ,
+									captureAt : new Date().toISOString(),
+
+
+									deletedAt : args.deletedAt ,
+									
+								});
+
+								console.log( newDetection )
+
+								returnedNewDetection = newDetection.save()
+
+							}
+					);
+
+
+		console.log("returnedNewDetection" , returnedNewDetection)
+		return returnedNewDetection;
+	
+
+
+	}, //createDetection End
 
 	createAction : ( _ , args) =>{
 

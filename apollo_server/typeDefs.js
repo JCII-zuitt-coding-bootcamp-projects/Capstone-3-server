@@ -88,6 +88,7 @@ const typeDefs = gql`
 
 		createdAt : Date
 		updatedAt : Date
+		person : PersonType
 	}
 
 	type ActionType{
@@ -199,7 +200,7 @@ const typeDefs = gql`
 		createDetection(
 			personId : String!
 			image : String!
-			captureAt : String!
+			captureAt : String
 			deletedAt : String
 
 		) : DetectionType
