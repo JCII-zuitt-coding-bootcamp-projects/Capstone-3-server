@@ -11,6 +11,16 @@ const Watchlist = require("../../models/Watchlist")
 const uuid = require('uuid/v1');
 const fs = require('fs');
 
+var cloudinary = require('cloudinary').v2
+
+
+//https://cloudinary.com/ , udomoo31
+cloudinary.config({ 
+  cloud_name: 'eyesecure', 
+  api_key: '914165596697934', 
+  api_secret: '7BRAmgEGC4EpRjoDegKP41_xvds' 
+});
+
 
 const mutationResolvers = {
 
@@ -48,38 +58,57 @@ const mutationResolvers = {
 		let imageBase = imageString.split(';base64,').pop()
 		console.log("encoded file " + imageBase)
 		let imageLocation = "faces/" + uuid() + ".jpg";
+
 		fs.writeFile(imageLocation , imageBase , {encoding : "base64" } , err=>{
 			console.log(err)
 		})
 
-				let newPerson = Person({
+		let returnedPerson = null
+		
+		cloudinary.uploader.upload(
+							imageLocation ,
+							(error, result) => {
+								console.log(result, error)
+
+								let newPerson = Person({
 					
-					firstName : args.firstName ,
-					middleName : args.middleName ,
-					lastName : args.lastName ,
-					birthday : args.birthday ,
-					address : args.address ,
-					nationality : args.nationality ,
-					gender : args.gender ,
-					adminId : args.adminId ,
-					deletedAt : args.deletedAt ,
-					image : imageLocation //'/images/hello.png'
-				});
+									firstName : args.firstName ,
+									middleName : args.middleName ,
+									lastName : args.lastName ,
+									birthday : args.birthday ,
+									address : args.address ,
+									nationality : args.nationality ,
+									gender : args.gender ,
+									adminId : args.adminId ,
+									deletedAt : args.deletedAt ,
+									// image : imageLocation //'/images/hello.png'
+									image : result.secure_url //'/images/hello.png'
 
-				//make the profile pic uploaded be the first face in faces
-				let newFace = Face({
+								});
 
-					personId : newPerson._id ,
-					image : newPerson.image ,
+								//make the profile pic uploaded be the first face in faces
+								let newFace = Face({
 
-				});
+									personId : newPerson._id ,
+									image : newPerson.image ,
 
-				newFace.save()
+								});
 
-		console.log( newFace )
-		console.log( newPerson )
+								newFace.save()
+								returnedPerson = newPerson.save()
 
-		return newPerson.save()
+							}
+					);
+
+
+			console.log("returnedPerson" , returnedPerson)
+			return returnedPerson;
+				
+
+		// console.log( newFace )
+		// console.log( newPerson )
+
+		
 	},
 
 
