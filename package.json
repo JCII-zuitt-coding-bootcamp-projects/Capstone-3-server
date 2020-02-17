@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "This is the server side of capstone 3.",
   "main": "server.js",
+  "engines": {
+    "npm": "6.12.1",
+    "node": "12.13.1"
+  },
   "dependencies": {
     "apollo-server-express": "^2.9.16",
     "bcryptjs": "^2.4.3",
